@@ -20,7 +20,7 @@ tag = sopa.find(name = 'div', class_='item_sel_wrapper')
 ListaCodigos = []
 ListaNomes = []
 ListaPrecos = []
-
+ListaAlturas = []
 
 for subtag in tag.find_all(name = 'div', class_ = 'item_sel_outer'):
 
@@ -33,11 +33,21 @@ for subtag in tag.find_all(name = 'div', class_ = 'item_sel_outer'):
     preco = subtag.find(name='span', class_='sale_price').string
     ListaPrecos.append(preco)
 
+    altura = subtag.find(name = 'strong', style = '').string
+    ListaAlturas.append(altura)
 
 #----------------------------------------------------------------------------------------
 
-dicionario = {'Código':ListaCodigos, 'Nome':ListaNomes, 'Preço':ListaPrecos}
+dicionario = {'Código':ListaCodigos, 'Nome':ListaNomes, 'Altura (Polegadas)':ListaAlturas, 'Preço (USD)':ListaPrecos}
 
 df = DataFrame(dicionario)
+
+df['Código'] = df['Código'].apply(lambda texto:texto.replace('Item# ', '') )
+
+df['Preço (USD)'] = df['Preço (USD)'].apply(lambda texto:texto.replace('Sale Price: $', ''))
+
+df['Altura (Polegadas)'] = df['Altura (Polegadas)'].apply(lambda texto:texto.replace('Size: ',''))
+
+df['Altura (Polegadas)'] = df['Altura (Polegadas)'].apply(lambda texto:texto.replace('"',''))
 
 print(df.head())
