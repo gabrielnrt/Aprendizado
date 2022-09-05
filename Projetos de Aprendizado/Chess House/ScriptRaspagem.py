@@ -3,7 +3,7 @@
 from requests import get
 from bs4 import BeautifulSoup
 from pandas import DataFrame
-
+from re import findall
 
 url = 'https://www.houseofchess.com/wood-chess-pieces.html'
 
@@ -21,6 +21,8 @@ ListaCodigos = []
 ListaNomes = []
 ListaPrecos = []
 ListaAlturas = []
+ListaMateriais = []
+
 
 for subtag in tag.find_all(name = 'div', class_ = 'item_sel_outer'):
 
@@ -36,9 +38,12 @@ for subtag in tag.find_all(name = 'div', class_ = 'item_sel_outer'):
     altura = subtag.find(name = 'strong', style = '').string
     ListaAlturas.append(altura)
 
+    material = subtag.find(name = 'strong', style = 'color:green').string
+    ListaMateriais.append(material)
+
 #----------------------------------------------------------------------------------------
 
-dicionario = {'Código':ListaCodigos, 'Nome':ListaNomes, 'Altura (Polegadas)':ListaAlturas, 'Preço (USD)':ListaPrecos}
+dicionario = {'Código':ListaCodigos, 'Nome':ListaNomes, 'Altura (Polegadas)':ListaAlturas, 'Material':ListaMateriais,'Preço (USD)':ListaPrecos}
 
 df = DataFrame(dicionario)
 
@@ -46,8 +51,14 @@ df['Código'] = df['Código'].apply(lambda texto:texto.replace('Item# ', '') )
 
 df['Preço (USD)'] = df['Preço (USD)'].apply(lambda texto:texto.replace('Sale Price: $', ''))
 
-df['Altura (Polegadas)'] = df['Altura (Polegadas)'].apply(lambda texto:texto.replace('Size: ',''))
+df['Altura (Polegadas)'] = df['Altura (Polegadas)'].apply(lambda texto: findall('\d{1}\.?\d*', texto)[0] )
 
-df['Altura (Polegadas)'] = df['Altura (Polegadas)'].apply(lambda texto:texto.replace('"',''))
+#-----------------------------------------------------------------------------------------------------
+# Conversão de tipagem
+
+df['Altura (Polegadas)'] = df['Altura (Polegadas)'].astype(float)
+
+df['Preço (USD)'] = df['Preço (USD)'].astype(float)
+
 
 print(df.head())
