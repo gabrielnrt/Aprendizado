@@ -49,7 +49,7 @@ Aqui boa parte dos projetos foram, até agora, baseados no Kaggle, com a finalid
 Nesta pasta tenho alguns notebooks sobre tópicos um pouco mais avançados em python, como expressões lambda e métodos de strings.
 
 ## Python POO
-Esta pasta poderia estar dentro do "Python Intermediário", mas como programação orientada a objetos é algo mais extenso, então preferi agrupar os notebooks sobre POO numa única pasta. Por hora, o conteúdo está baseado mais na playlist de Corey Schafer (https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc).
+Esta pasta poderia estar dentro do "Python Intermediário", mas como programação orientada a objetos é algo mais extenso, então preferi agrupar os notebooks sobre POO numa única pasta. Por hora, o conteúdo está baseado mais na playlist de [Corey Schafer](https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc).
 
 ## Udemy
 Aqui estão pastas sobre cursos que fiz na Udemy sobre como programar em Python e Formação Cientista de Dados.
