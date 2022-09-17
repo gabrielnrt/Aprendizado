@@ -30,7 +30,7 @@ Esta pasta contém algumas bibliotecas do python que costumo usar, e as quais ag
   - Plotly Express
 
 - Dashboards:
- - Dash
+  - Dash
 
 Boa parte dessas pastas estão baseadas na própria documentação de suas respectivas bibliotecas.
 
