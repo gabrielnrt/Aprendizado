@@ -27,6 +27,10 @@ Esta pasta contém algumas bibliotecas do python que costumo usar, e as quais ag
 
 - Visualização gráfica:
   - Matplotlib
+  - Plotly Express
+
+- Dashboards:
+ - Dash
 
 Boa parte dessas pastas estão baseadas na própria documentação de suas respectivas bibliotecas.
 
